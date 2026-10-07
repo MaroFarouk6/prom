@@ -7,5 +7,5 @@ receivers:
 - name: 'telegram-notifications'
   telegram_configs:
     - bot_token_file: /etc/alertmanager/.telegram_bot_token  
-      chat_id: 535703263
+      chat_id: 5357063263
       message: "one of our servers is down"
