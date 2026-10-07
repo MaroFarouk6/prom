@@ -1,25 +1,21 @@
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  scrape_interval:     15s 
 
-  # Attach these labels to any time series or alerts when communicating with
-  # external systems (federation, remote storage, Alertmanager).
-  external_labels:
-    monitor: 'codelab-monitor'
+alerting:
+ alertmanagers:
+   - static_configs:
+       - targets:  [alert-manager:9093]
 
-# A scrape configuration containing exactly one endpoint to scrape:
-# Here it's Prometheus itself.
+rule_files:
+  - "alerting.rules.yaml"
+         
 scrape_configs:
-  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+
   - job_name: 'prometheus'
-
-    # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
-
     static_configs:
       - targets: ['localhost:9090']
-  - job_name: 'linux server monitor'
-    
-    scrape_interval: 5s
 
+  - job_name: "linux servers"
     static_configs:
-      - targets: ['3.91.189.239:9100', '54.227.26.6:9100']
+      - targets: ["54.210.154.231:9100", "100.26.23.71:9100"]
