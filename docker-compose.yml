@@ -1,4 +1,18 @@
 services:
+
+  flask-app:
+    container_name: flask-app
+    build: .
+    ports:
+      - '5000:5000'
+  
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:13.2-slim
+    ports:
+      - '3000:3000'
+
+
   prometheus:
     container_name: prometheus
     image: prom/prometheus:v3.13.4
